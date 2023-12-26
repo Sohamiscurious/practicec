@@ -67,6 +67,45 @@ void QuickSort(int A[],int l,int h){
     }
 }
 
+//iterative version of merge sort
+void Merge(int A[],int l,int mid,int h){
+    int i,j,k;
+    int B[100];//auxillary array
+    
+    while(i<=mid && j<=h){
+        if(A[i]<A[j])
+            B[k++]=A[i++]; //copying elements from i because it is less lol
+        else
+            B[k++]=A[j++]; //here j wala column ka element is less
+    }
+    for(;i<mid;i++ ){
+        B[k++]=A[i]; //copying remaining elemetns as one list is smaller than the other list
+    }
+    for(;j<=h;j++){
+        B[k++]=A[j];
+    }
+    for(int i=l;i<=h;i++){
+        A[i]=B[i];//transfering elements
+    }
+    
+}
+
+void MergeSort(int A[], int n) {
+    int p, l, h, mid, i; // Declare variables for MergeSort
+
+    for (p = 2; p <= n; p = p * 2) { // Loop through increasing sub-array sizes (powers of 2)
+        for (i = 0; i + p - 1 < n; i = i + p) { // Iterate through the array with sub-array size 'p'
+            l = i; // Set the left boundary of the sub-array
+            h = i + p - 1; // Set the right boundary of the sub-array
+            mid = (l + h) / 2; // Calculate the midpoint of the sub-array
+            Merge(A, l, mid, h); // Merge the two halves of the sub-array
+        }
+    }
+
+    if (p / 2 < n) { // Check if there are remaining elements after main merging loops
+        Merge(A, 0, (p / 2) - 1, n - 1); // Merge the remaining elements into the sorted array
+    }
+}
 void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
