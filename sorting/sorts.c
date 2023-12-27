@@ -116,10 +116,80 @@ void MergeSort(int A[], int n) {
         Merge(A, 0, (p / 2) - 1, n - 1); // Merge the remaining elements into the sorted array
     }
 }
+
+
 void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
+}
+
+
+int findMax(int A[],int n){
+    int max=INT32_MIN;
+    int i;
+    for(i=0;i<n;i++){
+        if(A[i]>max){
+            max=A[i];
+        }
+    }
+    return max;
+}
+void CountSort(int A[],int n){
+    int i,j,max,*C;
+    max=findMax(A,n);
+    C=(int *)malloc(sizeof(int)*(max+1));
+    for(i=0;i<max+1;i++){
+        C[i]=0;//intialise our count array with zeros
+    }
+    for(i=0;i<n;i++){
+        C[A[i]]++;//increment count array element . this is done first by finding the value by index . and that value is index for count array
+    }
+    i=0;j=0;
+    while(j<max+1){
+        if(c[j]>0){
+            A[i++]=j;//add the element to the our original array
+            C[j]--;// decrement the count
+        }
+        else{
+            j++;//move to next element
+        }
+    }
+}
+void countSort(int arr[], int n, int exp) {
+    int output[n]; // Output array
+    int count[10] = {0}; // Initialize count array for digits 0 to 9
+
+    // Store count of occurrences in count[]
+    for (int i = 0; i < n; i++) {
+        count[(arr[i] / exp) % 10]++;
+    }
+
+    // Change count[i] so that count[i] contains actual position of this digit in output[]
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Build the output array
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
+    }
+
+    // Copy the output array to arr[], so that arr[] contains sorted numbers according to current digit
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+    }
+}
+
+// Radix Sort function
+void radixSort(int arr[], int n) {
+    int max = getMax(arr, n); // Get the maximum number from the array
+
+    // Perform counting sort for every digit. exp is the exponent of 10.
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countSort(arr, n, exp); // Call countSort to sort the numbers based on the current digit
+    }
 }
 
 int main() {
