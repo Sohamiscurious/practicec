@@ -89,6 +89,16 @@ void Merge(int A[],int l,int mid,int h){
     }
     
 }
+//recursive approach
+void MergeSort(int A[],int l,int h){
+    int mid;
+    if(l<h){
+        mid=(l+h)/2;
+        MergeSort(A,l,mid);//performs merge sort on left side of mid 
+        MergeSort(A,mid+1,h);//right side
+        Merge(A,l,mid,h);
+    }
+}
 
 void MergeSort(int A[], int n) {
     int p, l, h, mid, i; // Declare variables for MergeSort
