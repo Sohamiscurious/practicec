@@ -1,3 +1,5 @@
+//heap sort happens when we delete a element and store it in the last index
+
 #include <stdio.h> // Including standard input/output header file
 
 void Insert(int A[], int n) { // Function to insert element into the heap
