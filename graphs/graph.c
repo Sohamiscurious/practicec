@@ -74,10 +74,12 @@ void DFS(int G[][7], int start, int n) {
         visited[start] = 1;
         for (j = 1; j < n; j++) {
             if (G[start][j] == 1 && visited[j] == 0)
-                DFS(G, j, n);
+                DFS(G, j, n);//here start is j
         }
     }
 }
+
+
 
 int main() {
     int G[7][7] = {
