@@ -2,3 +2,7 @@ so in adjaceny matrix , just choose rows first then choose columns next , and if
 add one if there is no connection add 0.
  if the connection has weight/cost put that instead of one.
 same in adjaceny list, choose row and keep adding nodes for the connections respectively.
+
+in compact list, see diagram
+connections are filled in order starting from one vertice to other vertices. then starting index of this vertices are filed in 
+the first positions representing vertices. there is a space between vertices and connections usme out of array ka index bahrte hai
