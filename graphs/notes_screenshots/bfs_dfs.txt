@@ -1,0 +1,3 @@
+bfs - sab neighbor karte jao in list
+dfs- new vertice found go there , if not dound go to the previous one 
+check examples
